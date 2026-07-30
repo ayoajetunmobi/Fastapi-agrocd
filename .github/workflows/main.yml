@@ -40,7 +40,7 @@ jobs:
       - name: Checkout Target Configuration Repo
         uses: actions/checkout@v4
         with:
-          repository: 'ayoajetunmobi'
+          repository: 'ayoajetunmobi/agrocd'
           token: ${{ secrets.REPO_TOKEN }}
           persist-credentials: true
       - name: Extract FastAPI Git Commit SHA
