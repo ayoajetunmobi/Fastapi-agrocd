@@ -57,14 +57,14 @@ jobs:
           
           # Replace old image references with the new tagged image version
           # Adjust the regex pattern below to match your file structure exactly
-          sed -i "s|image: .*|image: ${{ secrets.DOCKERHUB_USERNAME }}/mycicdrepo:${{ steps.vars.outputs.sha_short }}|g" $TARGET_FILE
+          sed -i "s|image: .*|image: ${{ secrets.DOCKER_USER }}/mycicdrepo:${{ steps.vars.outputs.sha_short }}|g" $TARGET_FILE
 
       - name: Commit and Push Changes to Target Repo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add deployment.yaml
+          git add manifest/fastapiApp.yaml
           
           # Check if there are changes before attempting to commit
           if ! git diff-index --quiet HEAD; then
@@ -73,7 +73,3 @@ jobs:
           else
             echo "No changes detected in configuration file."
           fi
-          push: true
-            tags: |
-              ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:${{ steps.vars.outputs.sha_short }}
