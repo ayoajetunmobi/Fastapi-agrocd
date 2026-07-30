@@ -54,7 +54,7 @@ jobs:
       - name: Update Image Name in File
         run: |
           # Target file path (e.g., deployment.yaml, docker-compose.yml, or a config file)
-          TARGET_FILE="manifest/deployment.yaml"
+          TARGET_FILE="manifest/fastapiApp.yaml"
           
           # Replace old image references with the new tagged image version
           # Adjust the regex pattern below to match your file structure exactly
